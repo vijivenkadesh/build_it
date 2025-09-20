@@ -1,0 +1,7 @@
+docker run -it --rm <image_name_or_id> sh
+docker inspect <image_name_or_id>
+docker run -it --rm <image_name_or_id> bash
+
+If you only want to browse files without executing the image’s entrypoint:
+
+docker run -it --rm --entrypoint /bin/sh <image_name_or_id>
