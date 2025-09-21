@@ -1,14 +1,34 @@
-from flask import Flask
+from flask import Flask, request, jsonify, render_template
+from prediction import load_model, make_prediction, target_names
+import logging
 
-app = Flask(__name__)
+logger = logging.getLogger(__name__)
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+
+app = Flask(__name__, template_folder='templates')
+logging.info("Loading model...")
+model = load_model('model/random_forest_model.joblib')
+
 
 @app.route('/')
 def home():
-    return "Hello World!"
+    name = "oddsoul"
+    return render_template('index.html', name=name)
 
-@app.route('/predict')
+@app.route('/predict', methods=['GET','POST'])
 def predict():
-    return "Model"
+    if request.method == 'GET':
+        return render_template('predict.html')
+    elif request.method == 'POST':
+        input_data = [request.form.getlist('sepal_length') + request.form.getlist('sepal_width') + request.form.getlist('petal_length') + request.form.getlist('petal_width')]
+    # input_data = request.json.get('input_data')
+    logging.info(f"Received input data: {input_data}")
+    prediction = make_prediction(model, input_data)
+    predicted_class = target_names()[prediction[0]]
+    logging.info(f"Prediction made: {predicted_class}")
+    # return jsonify({'prediction': predicted_class})
+    return render_template('predict.html', prediction=predicted_class)
+    
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=8000, debug=True)
