@@ -1,7 +1,9 @@
 {% extends "base.html" %}
-{% block title %}Home - Build It App{% endblock %}
+{% block title %}Welcome to IRIS Species Prediction{% endblock %}
 
 {% block content %}
-    <h1>Welcome to the Build It App</h1>
-    <p>Hello, {{ name }}!</p>
+<div class="center-header-container">
+    <h1>Welcome to IRIS Species Prediction</h1>
+    <a href="{{ url_for('predict') }}" class="predict-btn">Go to Prediction Page</a>
+</div>
 {% endblock %}
