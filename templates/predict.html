@@ -2,19 +2,24 @@
 {% block title %}Home - Build It App{% endblock %}
 
 {% block content %}
+<div class="center-container">
     <form method="POST" action="{{ url_for('predict') }}">
-        <input type="float" name="sepal_length" placeholder="sepal length (cm)" required><br>
-        <input type="float" name="sepal_width" placeholder="sepal width (cm)" required><br>
-        <input type="float" name="petal_length" placeholder="petal length (cm)" required><br>
-        <input type="float" name="petal_width" placeholder="petal width (cm)" required><br>
+        <input type="number" step="any" name="sepal_length" placeholder="sepal length (cm)" required><br>
+        <input type="number" step="any" name="sepal_width" placeholder="sepal width (cm)" required><br>
+        <input type="number" step="any" name="petal_length" placeholder="petal length (cm)" required><br>
+        <input type="number" step="any" name="petal_width" placeholder="petal width (cm)" required><br>
         <input type="submit" value="Predict">
     </form>
 
-    {%if prediction%}
-        <h1 style="color: rebeccapurple;">Predicted Class: {{prediction}}</h1>
-    {%endif%}
+    {% if prediction %}
+    <div class="prediction-result">
+        <span>Predicted Class:</span>
+        <strong>{{ prediction }}</strong>
+    </div>
+    {% endif %}
 
-    {%if error%}
-        <h1 style="color: red;">Error: {{error}}</h1>
-    {%endif%}
+    {% if error %}
+    <div class="error-message">Error: {{ error }}</div>
+    {% endif %}
+</div>
 {% endblock %}

@@ -6,7 +6,7 @@ COPY pyproject.toml /app/pyproject.toml
 COPY uv.lock /app/uv.lock
 COPY ./templates /app/templates
 COPY ./model/random_forest_model.joblib /app/model/random_forest_model.joblib
-
+COPY ./static /app/static
 RUN uv sync --locked
 # Presuming there is a `my_app` command provided by the project
 CMD ["uv", "run", "app.py"]
