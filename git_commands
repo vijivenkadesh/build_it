@@ -1,0 +1,52 @@
+🔹 Setup & Config
+git config --global user.name "Your Name"
+git config --global user.email "you@email.com"
+git config --list
+
+🔹 Repository Basics
+git init                  # Initialize a repo
+git clone <repo_url>      # Clone a repo
+
+🔹 Daily Workflow (VERY IMPORTANT)
+git status                # Check file status
+git add <file>            # Stage a file
+git add .                 # Stage all changes
+git commit -m "message"   # Commit changes
+git push                  # Push to remote
+git pull                  # Pull latest changes
+
+🔹 Branching (Must-Know)
+git branch                # List branches
+git branch <name>         # Create branch
+git checkout <branch>     # Switch branch
+git checkout -b <name>    # Create & switch
+git merge <branch>        # Merge branch
+git branch -d <branch>    # Delete branch
+
+🔹 Remote Repositories
+git remote -v             # View remotes
+git remote add origin <url>
+git push -u origin main   # First push
+
+🔹 Viewing History & Changes
+git log                   # Commit history
+git log --oneline         # Compact history
+git diff                  # Unstaged changes
+git diff --staged         # Staged changes
+
+🔹 Undo & Fix Mistakes (🔥 Important)
+git restore <file>        # Discard changes
+git restore --staged <file>
+git reset --soft HEAD~1   # Undo commit, keep changes
+git reset --hard HEAD~1   # Undo commit, delete changes
+git revert <commit_id>    # Safe undo commit
+
+🔹 Stash (Temporary Save)
+git stash
+git stash list
+git stash pop
+
+🔹 Tags
+git tag                   # List tags
+git tag v1.0
+git push origin v1.0
